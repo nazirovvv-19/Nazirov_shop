@@ -36,7 +36,7 @@ function CategoryList() {
               return (
                 <Link
                   key={item.id}
-                  href={`/catogories/${item.id}`}
+                  href={`/categories/${item.id}`}
                   className=" m-auto text-gray-800 rounded-md  transition"
                 >
                   {item.name}

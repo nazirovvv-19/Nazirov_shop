@@ -1,24 +1,17 @@
 "use client";
 
-import Image from "next/image";
-import React from "react";
-import Link from "next/link";
-import { productType } from "@/types/types";
 import ShoppingCart01Icon from "@/assets/icons/shoppingCartIcon";
-import { useDispatch } from "react-redux";
 import { add } from "@/store/slice/CartSlice";
-import FavouriteIcon from "../assets/icons/favourite-stroke-rounded (4)";
-import { relative } from "path";
 import { toggleLike } from "@/store/slice/LikedSlice";
+import Image from "next/image";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import FavouriteIcon from "../assets/icons/favourite-stroke-rounded (4)";
 
-function ProduktCard({ item }: { item?: productType }) {
+function ProduktCard({ item }: { item?: any }) {
   const dispatch = useDispatch();
   console.log(item,'item');
   
-
-  // const addToCart = (item: any) => {
-  //   \
-  // };
 
   if (!item) {
     return (
