@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Strelka from "../../assets/icons/strelka";
 import Image from "next/image";
-import PersonalAcc from "@/components/Profil/PersonalAcc";
+import PersonalAcc from "../../components/Profil/PersonalAcc";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut, UserStorage } from "@/store/slice/UserSlice";
-import { RootState } from "@/store/types";
+import { logOut, UserStorage } from "../../store/slice/UserSlice";
+import { RootState } from "../../store/types";
 import { useRouter } from "next/router";
 
 function Profile() {

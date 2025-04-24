@@ -1,8 +1,8 @@
 "use client";
 
-import ShoppingCart01Icon from "@/assets/icons/shoppingCartIcon";
-import { add } from "@/store/slice/CartSlice";
-import { toggleLike } from "@/store/slice/LikedSlice";
+import ShoppingCart01Icon from "../assets/icons/shoppingCartIcon";
+import { add } from "../store/slice/CartSlice";
+import { toggleLike } from "../store/slice/LikedSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";

@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { store } from "@/store/store";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { store } from "../store/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";

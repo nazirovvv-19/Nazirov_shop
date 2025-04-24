@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 // import { Form } from "antd";
-import { userToken } from "@/store/slice/UserSlice";
+import { userToken } from "../store/slice/UserSlice";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";

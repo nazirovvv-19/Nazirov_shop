@@ -1,12 +1,9 @@
 "use client";
-import Products from "@/components/Products";
-import { add } from "@/store/slice/CartSlice";
-import axios from "axios";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import Products from "../../components/Products";
+import { add } from "../../store/slice/CartSlice";
 
 interface OneProductType {
   categoryId: number;

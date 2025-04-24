@@ -1,11 +1,12 @@
-import { deleted, minus, plus } from "@/store/slice/CartSlice";
-import { RootState } from "@/store/types";
-import { productType } from "@/types/types";
+import { deleted, minus, plus } from "../store/slice/CartSlice";
+import { RootState } from "../store/types";
+import { productType } from "../types/types";
 import { Button } from "antd";
 import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Delete02Icon from "../assets/icons/delete-02-stroke-rounded (1)";
+import Link from "next/link";
 
 function ShoppingCart({ close }: { close: () => void }) {
   const cartItems = useSelector((state: RootState) => state.cart.items || []);
@@ -77,9 +78,9 @@ function ShoppingCart({ close }: { close: () => void }) {
             <p className="text-2xl font-bold mt-5">
               Jami: {total_price.toLocaleString("ru")} som
             </p>
-            <button className="bg-yellow-300 p-2 rounded-xl w-full mt-14">
+           <Link href={'/checkout'}> <button onClick={()=>close()} className="bg-yellow-300 p-2 rounded-xl w-full mt-14">
               Rasmiylashtirish
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>

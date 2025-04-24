@@ -1,4 +1,4 @@
-import { RootState } from '@/store/types'
+import { RootState } from '../store/types'
 import React from 'react'
 import { useSelector } from 'react-redux'
 

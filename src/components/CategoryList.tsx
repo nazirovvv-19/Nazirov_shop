@@ -30,14 +30,14 @@ function CategoryList() {
     <section className="bg-white">
       <div className="container mx-auto p-3">
         {/* <Header /> */}
-        <div className="overflow-x-auto">
-          <div className="flex space-x-4 p-3">
+        <div className="overflow-x-auto+">
+          <div className="flex  p-3 justify-between">
             {categories.map((item) => {
               return (
                 <Link
                   key={item.id}
                   href={`/categories/${item.id}`}
-                  className=" m-auto text-gray-800 rounded-md  transition"
+                  className="  text-gray-800 rounded-md  transition"
                 >
                   {item.name}
                 </Link>

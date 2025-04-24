@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-import Banner from "@/components/Banners";
-import Products from "@/components/Products";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/types";
-import YandexMap from "@/components/YandexMap";
+import { useSelector } from "react-redux";
+import Banner from "../components/Banners";
+import Products from "../components/Products";
+import YandexMap from "../components/YandexMap";
+import { RootState } from "../store/types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

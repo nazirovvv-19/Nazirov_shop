@@ -1,9 +1,9 @@
-"use client";
-import { CategoryType } from "@/types/types";
+// "use client";
+import { CategoryType } from "../../types/types";
 // import ProduktCard from "@/companents/ProduktCard";
 // import { CardsDataType } from "@/type/Types";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import {
@@ -15,41 +15,53 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { GetServerSidePropsContext } from "next";
 type objectType = {
-   limit:number
-   items:CategoryType[]
-   totalItems:number,
-   page:number
+  limit: number;
+  items: CategoryType[];
+  totalItems: number;
+  page: number;
+};
+
+export async function getServerSideProps(args:GetServerSidePropsContext){
+  console.log(args);
+  
+  const res = await axios.get(`https://nt.softly.uz/api/front/products`,{
+   params:{
+    page:args.query.page,
+    limit:args.query.limit,
+    categoryId:args.params?.id
+   }
+
+  })
+
+  return {
+    props:{
+      data:res.data
+    }
+  }
 }
-function CategorieProduct() {
-  const [categoriesPage, setCategoriesPage] = useState<CategoryType[]>([]);
-  const [pagination,setPagination] =useState<objectType>()
-  const [page, setPage] = useState(1)
-  const params = useParams();
-  if (!params) return null;
-  const id = params.id;
-  useEffect(() => {
-    axios
-      .get(
-        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${page}&limit=10`
-      )
-      .then((res) => {
-        console.log(res.data, "skkskss");
-        setCategoriesPage(res.data.items);
-        setPagination(res.data)
-      });
-  }, [id,page]);
-  if (categoriesPage.length === 0) {
+function CategorieProduct({data}:{data:objectType}) {
+  const searchParams = useSearchParams()
+  const page = searchParams.get('page')||1
+  const limit = Number(searchParams.get('limit')||10)
+ 
+  if (!data) {
     return (
-      <div className="mx-auto container text-center  text-xl ">
-        loading...
-      </div>
+      <div className="mx-auto container text-center  text-xl ">loading...</div>
     );
   }
+const pageCount = Math.ceil(data.totalItems/limit)
+const params = useParams()  
+if (!params) {
+  return <></>
+}
   return (
     <div>
       <div className="grid grid-cols-5 container w-full mx-auto px-6 py-4">
-        {categoriesPage.map((item) => {
+        {data.items.map((item) => {
           return (
             <>
               <Card item={item} key={item.id} />
@@ -57,24 +69,44 @@ function CategorieProduct() {
           );
         })}
       </div>
-      <Pagination>
-        <PaginationContent>
-          {page>1&&(
-            <PaginationItem onClick={()=>setPage(page-1)}>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          )}
-          <PaginationItem>
-            <PaginationLink href="#">{page}</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem onClick={()=>setPage(page +1)}>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+
+     <div className="flex justify-center gap-2 mb-5">
+     {[...Array(pageCount)].map((_, index) => {
+        return (
+         <div>
+           <Link href={`/categories/${params.id}?page=${index + 1}&limit=${limit}`}>
+            <Button
+              variant={index + 1 === Number(page) ? "default" : "outline"}
+            >
+              {index + 1}
+            </Button>
+          </Link>
+            
+         </div>
+        );
+      })}
+     </div>
+      {/* <Pagination>
+  <PaginationContent>
+    {page > 1 && (
+      <PaginationItem>
+        <PaginationPrevious href={`/categories/${id}?page=${page - 1}&limit=${limit}`} />
+      </PaginationItem>
+    )}
+
+    <PaginationItem>
+      <PaginationLink href={`/categories/${id}?page=${page}&limit=${limit}`}>
+        {page}
+      </PaginationLink>
+    </PaginationItem>
+
+    {pagination && page < Math.ceil(pagination.totalItems / limit) && (
+      <PaginationItem>
+        <PaginationNext href={`/categories/${id}?page=${page + 1}&limit=${limit}`} />
+      </PaginationItem>
+    )}
+  </PaginationContent>
+</Pagination> */}
     </div>
   );
 }

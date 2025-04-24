@@ -1,18 +1,18 @@
-import EarthIcon from "@/assets/icons/earthIcon";
-import FavouriteIcon from "@/assets/icons/heart";
-import Menu01Icon from "@/assets/icons/menuIcon";
-import Search01Icon from "@/assets/icons/search";
-import ShoppingCart01Icon from "@/assets/icons/shoppingCartIcon";
-import UserIcon from "@/assets/icons/userIcon";
+import EarthIcon from "../assets/icons/earthIcon";
+import FavouriteIcon from "../assets/icons/heart";
+import Menu01Icon from "../assets/icons/menuIcon";
+import Search01Icon from "../assets/icons/search";
+import ShoppingCart01Icon from "../assets/icons/shoppingCartIcon";
+import UserIcon from "../assets/icons/userIcon";
 import React, { useState, useEffect } from "react";
 import CategoryList from "./CategoryList";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/types";
+import { RootState } from "../store/types";
 import ShoppingCart from "./ShoppingCart";
 import LikedProducts from "./LikedProducts";
 import Login from "./Login";
 import { useRouter } from "next/navigation";
-import { UserStorage } from "@/store/slice/UserSlice";
+import { UserStorage } from "../store/slice/UserSlice";
 
 const Navbar = () => {
   const router = useRouter();

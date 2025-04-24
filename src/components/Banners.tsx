@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { BannerType } from "@/types/types";
+import { BannerType } from "../types/types";
 import ArrowLeft01Icon from '../assets/icons/leftArrow';
 import ArrowRight01Icon from '../assets/icons/rightArrow'
 // import { BannerType } from "@/types";

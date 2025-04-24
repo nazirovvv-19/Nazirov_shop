@@ -1,10 +1,8 @@
 "use client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { productType } from "../types/types";
 import Card from "./Card";
-import { productType } from "@/types/types";
 // import { productType } from "@/types";
 
 function Products() {
