@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 
@@ -25,7 +26,7 @@ function Footer() {
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Ma'lumot</h4>
+          <h4 className="font-semibold mb-2">Malumot</h4>
           <ul className="space-y-1 text-sm">
             <li>Bepul yetkazib berish</li>
             <li>Texnomartda ishlash</li>
@@ -45,9 +46,11 @@ function Footer() {
         <div className="text-center md:text-left">
           <h4 className="font-semibold mb-2">Ilovani yuklab olish</h4>
           <div className="flex md:flex-col items-center gap-4 mt-2">
-            <img
+            <Image
               src="https://texnomart.uz/_nuxt/img/qr_code_footer.f794a42.png"
               alt="QR code"
+              width={0}
+              height={0}
               className="w-24 h-24 rounded bg-[#2e2e2e] p-1"
             />
             <div className="flex gap-2 mt-2">

@@ -1,12 +1,6 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
-    config.resolve.alias["@" ] = path.resolve(__dirname);
-    return config;
-  },
-  /* config options here */
   images: {
     remotePatterns: [
       {
@@ -18,7 +12,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  reactStrictMode:false
+  reactStrictMode: false,
+  transpilePackages: ['class-variance-authority'], // bu muammoni hal qiladi
 };
 
 export default nextConfig;

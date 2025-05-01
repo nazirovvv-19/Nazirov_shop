@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../components/ui/button";
+import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 // import { Form } from "antd";
 import { userToken } from "../store/slice/UserSlice";
@@ -31,7 +31,7 @@ function Login({
       password: "",
     },
   });
-  async function onSubmit(values: any) {
+  async function onSubmit(values:any) {
     console.log(values, "onsubmit");
     try {
       const login = await axios.post(
@@ -39,7 +39,7 @@ function Login({
         values
       );
       console.log(login.data ,'loginnn');
-      ("muvaffiqiyatli bajarildi");
+      // ("muvaffiqiyatli bajarildi");
       dispatch(userToken(login.data));
       close();
     } catch (e) {

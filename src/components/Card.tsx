@@ -7,15 +7,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import FavouriteIcon from "../assets/icons/favourite-stroke-rounded (4)";
-
-function ProduktCard({ item }: { item?: any }) {
+export type CardsDataType = {
+  categoryId: number;
+  createdAt: string;
+  description: string;
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: string;
+  stock: number;
+};
+function ProduktCard({ item }: { item: CardsDataType }) {
   const dispatch = useDispatch();
-  console.log(item,'item');
-  
 
   if (!item) {
     return (
-      <div className="text-red-500">Mahsulot ma'lumotlari mavjud emas.</div>
+      <div className="text-red-500">Mahsulot malumotlari mavjud emas.</div>
     );
   }
 
@@ -44,7 +51,7 @@ function ProduktCard({ item }: { item?: any }) {
         </div>
       ) : (
         <div className="bg-gray-200 w-[230px] h-[250px] flex items-center justify-center rounded-lg">
-          <p className="text-gray-500">Rasm yo‘q</p>
+          <p className="text-gray-500">Rasm yo{"'"}q</p>
         </div>
       )}
 

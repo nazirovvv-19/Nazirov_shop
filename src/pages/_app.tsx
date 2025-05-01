@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { store } from "../store/store";
@@ -10,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <Navbar />
       <Component {...pageProps} />
+      <Toaster richColors />
       <Footer />
     </Provider>
   );

@@ -1,5 +1,5 @@
 import { Map, Placemark, YMaps } from "@iminside/react-yandex-maps";
-import { Spin } from "antd";
+// import { Spin } from "antd";
 import { useState } from "react";
 
 function YandexMap() {
@@ -10,7 +10,7 @@ function YandexMap() {
   }>();
   const [loading, setLoading] = useState(false)
   if (loading) {
-    <div><Spin/></div>
+    <div>Loading...</div>
   }
   return (
     <div>
@@ -19,7 +19,6 @@ function YandexMap() {
           setLoading(true)
           navigator.geolocation.getCurrentPosition(
             (data) => {
-              console.log(data);
               setLonglang({
                 latitude: data.coords.latitude,
                 longitude: data.coords.longitude,
@@ -27,7 +26,7 @@ function YandexMap() {
               setLoading(false)
             },
             (e) => {
-              console.log(e);
+              console.error(e);
             }
           );
         }}

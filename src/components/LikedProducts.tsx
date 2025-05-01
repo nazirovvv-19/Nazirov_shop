@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { RootState } from '../store/types'
 import React from 'react'
 import { useSelector } from 'react-redux'
@@ -25,14 +26,16 @@ function LikedProducts({ close }: { close: () => void }) {
                 key={item.id}
                 className="border rounded-md p-4 shadow-sm bg-white"
               >
-                <img
+                <Image
                   src={item.imageUrl}
                   alt={item.name}
+                  width={200}
+                  height={200}
                   className="w-full h-[200px] object-contain mb-2"
                 />
                 <h3 className="text-md font-medium">{item.name}</h3>
                 <p className="text-gray-600 text-sm">
-                  {Number(item.price).toLocaleString('ru')} so'm
+                  {Number(item.price).toLocaleString('ru')} so{"'"}m
                 </p>
               </div>
             ))

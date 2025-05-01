@@ -21,10 +21,10 @@ const Navbar = () => {
   const [isOpenShoppingCart, setisOpenShoppingCart] = useState<boolean>(false);
   const [likeModalOpen, setLikeModalOpen] = useState<boolean>(false);
   const [loginPageOpen, setLoginPageOpen] = useState<boolean>(false);
-  const totalPrice = products.reduce(
-    (prev, curr) => prev + curr.total_price,
-    0
-  );
+  // const totalPrice = products.reduce(
+  //   (prev, curr) => prev + curr.total_price,
+  //   0
+  // );
   const likedProduct = useSelector((state: RootState) => state.like.items);
   // const user_name = useSelector(
   //   (state: RootState) => state.userToken.user?.name
@@ -41,11 +41,11 @@ const Navbar = () => {
       <div className="bg-gray-800 text-white text-sm flex justify-between px-6 py-2">
         <div className="flex gap-4">
           <span>📍 Toshkent</span>
-          <span>Bizning do'konlarimiz</span>
+          <span>Bizning dokonlarimiz</span>
           <span className="bg-gray-600 px-2 py-0.5 rounded">
             Yuridik shaxslar uchun
           </span>
-          <span>To'lov usullari</span>
+          <span>Tolov usullari</span>
         </div>
         <div className="flex items-center gap-4">
           <span>
@@ -55,13 +55,15 @@ const Navbar = () => {
 
           <EarthIcon />
 
-          <span>O‘Z </span>
+          <span>O{"'"}Z </span>
         </div>
       </div>
 
       <div className="bg-white flex items-center justify-between px-6 py-3 shadow-md">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-black">texnomart*</h1>
+          <h1 className="text-2xl font-bold text-black" onClick={()=>{
+            router.push('/')
+          }}>texnomart*</h1>
           <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded-xl flex items-center gap-2">
             <Menu01Icon />
             Katalog

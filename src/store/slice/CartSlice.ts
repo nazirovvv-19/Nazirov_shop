@@ -58,11 +58,8 @@ export const cartReducer = createSlice({
       state.total_price += payload.price;
     },
     plus: (state, { payload }) => {
-      console.log(payload, " payload");
 
       const plusItem = state.items.map((item) => {
-        console.log('item',JSON.stringify(item, null, 2   ));
-        
         return item.product_id === payload.product_id
           ? {
               ...item,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Strelka from "../../assets/icons/strelka";
 import Image from "next/image";
 import PersonalAcc from "../../components/Profil/PersonalAcc";
@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut, UserStorage } from "../../store/slice/UserSlice";
 import { RootState } from "../../store/types";
 import { useRouter } from "next/router";
+import MyOrder from "@/components/MyOrder";
 
 function Profile() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [open,setOpen]=useState(false)
 
   useEffect(() => {
     dispatch(UserStorage());
@@ -23,18 +25,21 @@ function Profile() {
     router.push("/");
   };
 
+
+
+
   return (
     <div className="container mx-auto">
       <div className="flex items-center gap-2 p-2">
-        <div>
+        <div onClick={()=>{router.push('/')}}>
           <Strelka />
         </div>
         <p className="p-1 text-[12px] bg-gray-200 rounded">Bosh sahifa</p>
         <p className="p-1 text-[12px] bg-amber-200 rounded">Shaxsiy kabinet</p>
       </div>
-      <div className="py-5 px-7 flex items-center justify-between">
+      <div className="py-5 px-7 flex  justify-between">
         <div className="border-r p-5 pr-12">
-          <div className="flex gap-5 items-center border-b py-3 ">
+          <div className="flex gap-5 items-center border-b py-3 " onClick={()=>setOpen(false)}>
             <Image
               className="border rounded-full p-2 bg-gray-200"
               src={"https://cdn-icons-png.flaticon.com/512/51/51256.png"}
@@ -56,7 +61,7 @@ function Profile() {
               width={40}
               height={40}
             />
-            <p>Mening to'lovlarim</p>
+            <p>Mening tolovlarim</p>
           </div>
           <div className="flex gap-5 items-center mt-5">
             <Image
@@ -66,9 +71,9 @@ function Profile() {
               width={40}
               height={40}
             />
-            <p>To'lov tarixi</p>
+            <p>Tolov tarixi</p>
           </div>
-          <div className="flex gap-5 items-center mt-5">
+          <div className="flex gap-5 items-center mt-5" onClick={()=>setOpen(true)}>
             <Image
               className="border rounded-full p-2 bg-gray-200"
               src={"https://cdn-icons-png.flaticon.com/512/51/51256.png"}
@@ -93,7 +98,7 @@ function Profile() {
             <p>Chiqish</p>
           </div>
         </div>
-        <PersonalAcc />
+       {open? <MyOrder/>:<PersonalAcc />}
       </div>
     </div>
   );

@@ -22,8 +22,6 @@ export const likeSlice = createSlice({
     reducers: {
         toggleLike: (state,{payload})=>{
            const favorite = state.items.find(item=>item.id === payload.product_id)
-           console.log(state,'state');
-           console.log(payload.product_id,'payload');
            
            if (favorite) {
                 state.items.filter(item=>item.id!== payload.product_id)

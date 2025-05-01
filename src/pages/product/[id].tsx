@@ -15,21 +15,19 @@ interface OneProductType {
   price: string;
   stock: number;
 }
-export const getServerSideProps = (async ({params}:GetServerSidePropsContext) => {
-  const res = await fetch("https://nt.softly.uz/api/front/products/" + params?.id)
-  const product= await res.json()
-  return { props: {product } }
-})
-function Product({product}:any) {
-  // const { id } = useParams();
-  // const [product, setProduct] = useState<OneProductType | null>(null);
-  const dispatch = useDispatch()
 
-  const addToCart = (product:any)=>{
-    dispatch(add(product))
-  }
+export const getServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+  const res = await fetch(`https://nt.softly.uz/api/front/products/${params?.id}`);
+  const product = await res.json();
+  return { props: { product } };
+};
 
- 
+function Product({ product }: { product: OneProductType }) {
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(add(product));
+  };
 
   if (!product) {
     return (
@@ -40,62 +38,48 @@ function Product({product}:any) {
   }
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="flex flex-col   md:flex-row justify-center items-center md:items-start gap-40  ">
-        <div className="flex flex-col gap-3 ">
-          <Image
-            className="border-black border rounded-xl p-1"
-            src={product.imageUrl}
-            alt={product.name}
-            width={150}
-            height={40}
-          />
-          <Image
-            className="border-black border rounded-xl p-1"
-            src={product.imageUrl}
-            alt={product.name}
-            width={150}
-            height={40}
-          />
-          <Image
-            className="border-black border rounded-xl p-1"
-            src={product.imageUrl}
-            alt={product.name}
-            width={150}
-            height={40}
-          />
+    <div className="container mx-auto px-4 py-10">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-row lg:flex-col gap-3 justify-center items-center">
+          {[...Array(3)].map((_, i) => (
+            <Image
+              key={i}
+              className="border border-black rounded-xl p-1"
+              src={product.imageUrl}
+              alt={`${product.name} thumbnail ${i + 1}`}
+              width={100}
+              height={100}
+              loading="lazy"
+            />
+          ))}
         </div>
-        <div className="w-full">
+
+        <div className="flex justify-center items-center w-full lg:w-[400px]">
           <Image
-            style={{
-              width: 400,
-              height: 400,
-              objectFit: "contain",
-            }}
+            src={product.imageUrl}
+            alt={product.name}
             width={400}
-            height={500}
-            src={product.imageUrl}
-            alt={product.name}
-            className="rounded-lg shadow-lg border border-gray-300"
+            height={400}
+            className="rounded-lg shadow-lg border border-gray-300 object-contain"
           />
         </div>
-        <div className="w-60">
-            <p>Description _____ {product.description}</p>
-        </div>
-        <div className=" mt-30">
-          <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-gray-600 mt-2">{product.description}</p>
-          <p className="text-3xl font-semibold text-green-600 mt-4">
-            ${product.price}
-          </p>
-          <div className="mt-6">
-            <button onClick={()=>addToCart(product)} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-              Add to Cart
-            </button>
-          </div>
+
+        <div className="flex flex-col gap-4 max-w-md">
+          <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
+          <p className="text-gray-600">{product.description}</p>
+          <p className="text-3xl font-semibold text-green-600">${product.price}</p>
+          <button
+            onClick={addToCart}
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
-      <Products />
+
+      <div className="mt-20">
+        <Products />
+      </div>
     </div>
   );
 }

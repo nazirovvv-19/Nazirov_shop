@@ -1,18 +1,18 @@
 import { deleted, minus, plus } from "../store/slice/CartSlice";
 import { RootState } from "../store/types";
 import { productType } from "../types/types";
-import { Button } from "antd";
+// import { Button } from "antd";
 import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Delete02Icon from "../assets/icons/delete-02-stroke-rounded (1)";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 function ShoppingCart({ close }: { close: () => void }) {
   const cartItems = useSelector((state: RootState) => state.cart.items || []);
   const total_price = useSelector((state: RootState) => state.cart.total_price);
   const dispatch = useDispatch();
-  console.log(total_price);
 
   return (
     <div className=" container mx-auto w-full ">
@@ -40,7 +40,7 @@ function ShoppingCart({ close }: { close: () => void }) {
                           height={80}
                         />
                         <p>{item.product.name}</p>
-                        <p>{item.total_price.toLocaleString("ru")} so'm</p>
+                        <p>{item.total_price.toLocaleString("ru")} som</p>
                         <div className="flex gap-2 items-center">
                           <Button onClick={() => dispatch(minus(item))}>
                             -
@@ -51,7 +51,11 @@ function ShoppingCart({ close }: { close: () => void }) {
                           </Button>
                         </div>
                       </div>
-                      <div onClick={()=>{dispatch(deleted(item))}}>
+                      <div
+                        onClick={() => {
+                          dispatch(deleted(item));
+                        }}
+                      >
                         <Delete02Icon />
                       </div>
                     </div>
@@ -78,9 +82,15 @@ function ShoppingCart({ close }: { close: () => void }) {
             <p className="text-2xl font-bold mt-5">
               Jami: {total_price.toLocaleString("ru")} som
             </p>
-           <Link href={'/checkout'}> <button onClick={()=>close()} className="bg-yellow-300 p-2 rounded-xl w-full mt-14">
-              Rasmiylashtirish
-            </button></Link>
+            <Link href={"/checkout"}>
+              {" "}
+              <button
+                onClick={() => close()}
+                className="bg-yellow-300 p-2 rounded-xl w-full mt-14"
+              >
+                Rasmiylashtirish
+              </button>
+            </Link>
           </div>
         </div>
       </div>
