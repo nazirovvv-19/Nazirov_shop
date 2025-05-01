@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import FavouriteIcon from "../assets/icons/favourite-stroke-rounded (4)";
+import { toast } from "sonner";
 export type CardsDataType = {
   categoryId: number;
   createdAt: string;
@@ -19,6 +20,10 @@ export type CardsDataType = {
 };
 function ProduktCard({ item }: { item: CardsDataType }) {
   const dispatch = useDispatch();
+  const addToCart = (item:any)=>{
+    dispatch(add(item))
+    toast.success('Mahsulotingiz qoshildi')
+  }
 
   if (!item) {
     return (
@@ -36,13 +41,13 @@ function ProduktCard({ item }: { item: CardsDataType }) {
             <Image
               style={{
                 height: 250,
-                objectFit: "contain",
+                objectFit: "cover",
               }}
               width={300}
               height={250}
               src={item.imageUrl}
               alt={item.name || "Mahsulot"}
-              className="mx-auto rounded-lg object-cover"
+              className="  object-cover"
             />
           </Link>
           <div onClick={()=>dispatch(toggleLike(item))} className="absolute top-0 right-0 z-10">
@@ -67,7 +72,7 @@ function ProduktCard({ item }: { item: CardsDataType }) {
           </p>
           <button
             className="border-2 border-amber-500 p-2 rounded-md hover:bg-amber-500 hover:text-white transition"
-            onClick={() => dispatch(add(item))}
+            onClick={() => addToCart(item) }
           >
             <ShoppingCart01Icon size={20} />
           </button>

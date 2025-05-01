@@ -10,8 +10,12 @@ function Products() {
   useEffect(() => {
     axios.get("https://nt.softly.uz/api/front/products").then((res) => {
       setProducts(res.data.items);
+      
       // console.log("product", res.data.items);
-    });
+    }).catch(e=>{
+      console.error(e);
+      
+    })
   }, []);
   if (!products) {
     return <div>loading</div>;

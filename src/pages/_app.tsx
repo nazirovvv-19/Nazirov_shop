@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <Navbar />
       <Component {...pageProps} />
-      <Toaster richColors />
+      <Toaster richColors position="top-right" />
       <Footer />
     </Provider>
   );

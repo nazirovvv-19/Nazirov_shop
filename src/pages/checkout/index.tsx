@@ -109,6 +109,8 @@ export default function Checkout() {
             </div>
 
             <input
+            className="border p-2 rounded-md outline-0 "
+            placeholder="manzil kiriting"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)} 
@@ -149,8 +151,8 @@ export default function Checkout() {
               <div key={item.product_id} className="flex justify-between px-5">
                 <div className="flex flex-col gap-1 ">
                   <p className="font-bold">{item.product.name}</p>
-                  <p>{item.qty}</p>
-                  <p>{item.total_price.toLocaleString("ru")}</p>
+                  <p>Mahsulot soni: {item.qty}</p>
+                  <p>Mahsulot narxi: {item.total_price.toLocaleString("ru")} som</p>
                 </div>
                 <Image
                   src={item.product.imageUrl}
